@@ -20,7 +20,7 @@ export class ShowEmpComponent implements OnInit {
 
   constructor( private service: EmployeeService, private dialog : MatDialog, private snackBar: MatSnackBar) { 
     this.service.listen().subscribe((m:any) => {
-      this.refreshDepList();
+      this.refreshEmpList();
     })
   }
 
@@ -30,10 +30,10 @@ export class ShowEmpComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
-    this.refreshDepList();
+    this.refreshEmpList();
   }
 
-  refreshDepList() {
+  refreshEmpList() {
     this.service.getEmpList().subscribe(data => {
       this.listData = new MatTableDataSource(data);
       this.listData.sort = this.sort;
@@ -41,24 +41,24 @@ export class ShowEmpComponent implements OnInit {
   }
 
   onEdit(emp : Employee) {
-    // this.service.formData = dep;
-    // const dialogConfig = new MatDialogConfig;
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = "70%";
-    // this.dialog.open(EditDepComponent, dialogConfig);
+    this.service.formData = emp;
+    const dialogConfig = new MatDialogConfig;
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    this.dialog.open(EditEmpComponent, dialogConfig);
   }
 
   onDelete(id : number) {
-    // if(confirm("Are you sure?")){
-    //   this.service.deleteDepartment(id).subscribe(res => {
-    //     this.refreshDepList();
-    //     this.snackBar.open(res.toString(),'', {
-    //       duration: 5000,
-    //       verticalPosition:'top'
-    //     });
-    //   })
-    // }
+    if(confirm("Are you sure?")){
+      this.service.deleteEmployee(id).subscribe(res => {
+        this.refreshEmpList();
+        this.snackBar.open(res.toString(),'', {
+          duration: 5000,
+          verticalPosition:'top'
+        });
+      })
+    }
   }
 
   applyFilter(keyword : string) {

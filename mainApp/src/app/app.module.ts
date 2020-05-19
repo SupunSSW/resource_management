@@ -27,6 +27,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,10 +56,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     MatInputModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [DepartmentService,EmployeeService],
   bootstrap: [AppComponent],
-  entryComponents: [AddDepComponent, EditDepComponent]
+  entryComponents: [AddDepComponent, EditDepComponent, EditEmpComponent]
 })
 export class AppModule { }
