@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mainApp';
+  public departments = false;
+  public employees = false;
 }

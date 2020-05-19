@@ -1,0 +1,43 @@
+<div class="d-flex align-items-end justify-content-between">
+    <button mat-raised-button (click)="onAddClick()" color="primary">Add Department</button>
+    <form class="example-form">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </form>
+</div>
+
+
+
+<div style="overflow: auto;">
+
+
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="listData" matSort>
+            <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+            <mat-row *matRowDef="let row;columns: displayColumns;"></mat-row>
+
+            <ng-container matColumnDef="Options">
+                <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="onEdit(row)">
+                        <mat-icon>launch</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="onDelete(row.DepartmentID)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="DepartmentID">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>DepartmentID</mat-header-cell>
+                <mat-header-cell *matCellDef="let element">{{element.DepartmentID}}</mat-header-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="DepartmentName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>DepartmentName</mat-header-cell>
+                <mat-header-cell *matCellDef="let element">{{element.DepartmentName}}</mat-header-cell>
+            </ng-container>
+        </mat-table>
+    </div>
+</div>
